@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearchUsers } from "./hooks/useSearchUsers";
 import { Link } from "react-router-dom";
+import ProfileSkeleton from "./components/ProfileSkeleton";
 
 export default function App() {
   const [input, setInput] = useState("");
@@ -19,7 +20,7 @@ export default function App() {
 
   return (
     <div className="bg-gray-100 min-h-screen p-6 flex flex-col items-center">
-      <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">
+      <h1 className="text-4xl font-extrabold mb-8 text-gray-800 text-center">
         GitHub Profile Finder
       </h1>
 
@@ -40,6 +41,7 @@ export default function App() {
           Search
         </button>
       </div>
+
       <div className="flex gap-3 mb-6">
         {["torvalds", "gaearon", "yyx990803", "kentcdodds"].map((name) => (
           <button
@@ -69,11 +71,7 @@ export default function App() {
       )}
 
       {/* Loading */}
-      {isLoading && (
-        <div className="p-6 w-96 bg-white rounded shadow animate-pulse">
-          Loading results...
-        </div>
-      )}
+      {isLoading && <ProfileSkeleton />}
 
       {/* Error */}
       {isError && (
@@ -82,7 +80,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Search Results */}
+    
       {results?.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map((user) => (

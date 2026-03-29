@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGithubProfile } from "../hooks/useSearchUsers";
-import ProfileSkeleton from "../components/ProfileSkeleton";
+import { useGithubProfile } from "../hooks/useGithubProfile";
 
 export default function ProfilePage() {
   const { username } = useParams();
@@ -9,12 +8,10 @@ export default function ProfilePage() {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-gray-500 text-lg">Loading profile...</p>
+      <div className="flex justify-center items-center bg-gray-100 min-h-screen">
+        <p className="text-gray-500 text-lg animate-pulse">Loading profile...</p>
       </div>
     );
-
-    if (isLoading) return <ProfileSkeleton />
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
@@ -24,38 +21,35 @@ export default function ProfilePage() {
         
         <img
           src={data?.avatar_url}
-          alt="Profile picture"
+          alt={data?.login}
           className="w-32 h-32 rounded-full mx-auto border-4 border-gray-200"
         />
 
         
         <h2 className="text-2xl font-bold mt-4">{data?.login}</h2>
-
-       
         <p className="text-xl font-semibold">{data?.name}</p>
        
 
-        
         <div className="flex justify-around mt-6 border-t pt-4">
 
-          <div>
+          <div className="bg-gray-100 rounded-2xl py-4 px-2 text-center">
             <p className="text-black font-extrabold mt-1">
                 {data?.location || "Not specified"}
             </p>
             <p className="text-gray-500 text-sm">Location</p>
           </div>  
 
-          <div>
+          <div className="bg-gray-100 rounded-2xl py-4 px-2 text-center">
             <p className="text-xl font-semibold">{data?.followers}</p>
             <p className="text-gray-500 text-sm">Followers</p>
           </div>
 
-          <div>
+          <div className="bg-gray-100 rounded-2xl py-4 px-2 text-center">
             <p className="text-xl font-semibold">{data?.following}</p>
             <p className="text-gray-500 text-sm">Following</p>
           </div>
 
-          <div>
+          <div className="bg-gray-100 rounded-2xl py-4 px-2 text-center">
             <p className="text-xl font-semibold">{data?.public_repos}</p>
             <p className="text-gray-500 text-sm">Repos</p>
           </div>
