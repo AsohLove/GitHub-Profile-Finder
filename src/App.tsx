@@ -24,7 +24,7 @@ export default function App() {
         GitHub Profile Finder
       </h1>
 
-      {/* Search Bar */}
+      
       <div className="flex gap-2 mb-8">
         <input
           type="text"
@@ -70,10 +70,10 @@ export default function App() {
         </p>
       )}
 
-      {/* Loading */}
+     
       {isLoading && <ProfileSkeleton />}
 
-      {/* Error */}
+      
       {isError && (
         <div className="text-red-500 font-semibold mb-4">
           {(error as Error).message}
@@ -106,10 +106,10 @@ export default function App() {
         </div>
       )}
 
-      {/* No results */}
+      
       {query && results?.length === 0 && (
         <div className="text-center mt-8">
-          <p className="text-red-500 font-semibold text-lg">No users found</p>
+          <p className="text-red-500 font-semibold text-lg">No users found for {query}</p>
           <p className="text-gray-500">Try searching another username.</p>
         </div>
       )}
